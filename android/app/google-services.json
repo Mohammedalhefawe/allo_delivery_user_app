@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "807143220946",
+    "project_id": "rtryrtryr-c048c",
+    "storage_bucket": "rtryrtryr-c048c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807143220946:android:6a5cf8e8fa596e9e866f0b",
+        "android_client_info": {
+          "package_name": "com.storylink.allodelivery"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoM2i6JtxVrGm5tM9j-mrGqPKIe1PsdAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
