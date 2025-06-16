@@ -11,16 +11,15 @@ import 'package:flutter_sixvalley_ecommerce/utill/app_constants.dart';
 import 'package:flutter_sixvalley_ecommerce/utill/images.dart';
 import 'package:provider/provider.dart';
 
-
-class AddressRepository implements AddressRepoInterface<ApiResponse>{
+class AddressRepository implements AddressRepoInterface<ApiResponse> {
   final DioClient? dioClient;
   AddressRepository({this.dioClient});
-
 
   @override
   Future<ApiResponse> getDeliveryRestrictedCountryList() async {
     try {
-      final response = await dioClient!.get(AppConstants.deliveryRestrictedCountryList);
+      final response =
+          await dioClient!.get(AppConstants.deliveryRestrictedCountryList);
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
@@ -30,7 +29,8 @@ class AddressRepository implements AddressRepoInterface<ApiResponse>{
   @override
   Future<ApiResponse> getDeliveryRestrictedZipList() async {
     try {
-      final response = await dioClient!.get(AppConstants.deliveryRestrictedZipList);
+      final response =
+          await dioClient!.get(AppConstants.deliveryRestrictedZipList);
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
@@ -40,7 +40,8 @@ class AddressRepository implements AddressRepoInterface<ApiResponse>{
   @override
   Future<ApiResponse> getDeliveryRestrictedZipBySearch(String zipcode) async {
     try {
-      final response = await dioClient!.get('${AppConstants.deliveryRestrictedZipList}?search=$zipcode');
+      final response = await dioClient!
+          .get('${AppConstants.deliveryRestrictedZipList}?search=$zipcode');
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
@@ -48,20 +49,22 @@ class AddressRepository implements AddressRepoInterface<ApiResponse>{
   }
 
   @override
-  Future<ApiResponse> getDeliveryRestrictedCountryBySearch(String country) async {
+  Future<ApiResponse> getDeliveryRestrictedCountryBySearch(
+      String country) async {
     try {
-      final response = await dioClient!.get('${AppConstants.deliveryRestrictedCountryList}?search=$country');
+      final response = await dioClient!
+          .get('${AppConstants.deliveryRestrictedCountryList}?search=$country');
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
-
 
   @override
   Future<ApiResponse> getList({int? offset}) async {
     try {
-      final response = await dioClient!.get('${AppConstants.addressListUri}?guest_id=${Provider.of<AuthController>(Get.context!, listen: false).getGuestToken()}');
+      final response = await dioClient!.get(
+          '${AppConstants.addressListUri}?guest_id=${Provider.of<AuthController>(Get.context!, listen: false).getGuestToken()}');
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
@@ -72,9 +75,8 @@ class AddressRepository implements AddressRepoInterface<ApiResponse>{
   Future<ApiResponse> delete(int? id) async {
     try {
       final response = await dioClient!.post(
-        '${AppConstants.removeAddressUri}?address_id=$id&guest_id=${Provider.of<AuthController>(Get.context!, listen: false).getGuestToken()}',
-        data: {"_method" : 'delete'}
-      );
+          '${AppConstants.removeAddressUri}?address_id=$id&guest_id=${Provider.of<AuthController>(Get.context!, listen: false).getGuestToken()}',
+          data: {"_method": 'delete'});
       ApiResponse res = ApiResponse.withSuccess(response);
       return res;
     } catch (e) {
@@ -82,11 +84,11 @@ class AddressRepository implements AddressRepoInterface<ApiResponse>{
     }
   }
 
-
   @override
   Future<ApiResponse> add(AddressModel addressModel) async {
     try {
-      Response response = await dioClient!.post(AppConstants.addAddressUri, data: addressModel.toJson());
+      Response response = await dioClient!
+          .post(AppConstants.addAddressUri, data: addressModel.toJson());
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
@@ -94,19 +96,20 @@ class AddressRepository implements AddressRepoInterface<ApiResponse>{
   }
 
   @override
-  Future<ApiResponse> update(Map<String, dynamic> addressModel, int addressId) async {
+  Future<ApiResponse> update(
+      Map<String, dynamic> addressModel, int addressId) async {
     try {
-      Response response = await dioClient!.post(AppConstants.updateAddressUri, data: addressModel);
+      Response response = await dioClient!
+          .post(AppConstants.updateAddressUri, data: addressModel);
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
-
 
   @override
   List<LabelAsModel> getAddressType() {
-    List<LabelAsModel> labelAsList= [
+    List<LabelAsModel> labelAsList = [
       LabelAsModel('home', Images.homeImage),
       LabelAsModel('office', Images.officeImage),
       LabelAsModel('others', Images.address),
@@ -114,15 +117,9 @@ class AddressRepository implements AddressRepoInterface<ApiResponse>{
     return labelAsList;
   }
 
-
-
-
   @override
   Future get(String id) {
     // TODO: implement get
     throw UnimplementedError();
   }
-
 }
-
-
